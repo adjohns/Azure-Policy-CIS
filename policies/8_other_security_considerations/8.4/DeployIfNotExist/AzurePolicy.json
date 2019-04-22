@@ -14,14 +14,6 @@
                     {
                         "field": "Microsoft.KeyVault/vaults/enablePurgeProtection",
                         "exists": "false"
-                    },
-                    {
-                        "field": "Microsoft.KeyVault/vaults/enableSoftDelete",
-                        "equals": "false"
-                    },
-                    {
-                        "field": "Microsoft.KeyVault/vaults/enablePurgeProtection",
-                        "equals": "false"
                     }
                 ]
             }
