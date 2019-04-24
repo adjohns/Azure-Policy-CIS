@@ -1,0 +1,1 @@
+At this time you cannot audit or deny the existence or creation of secrets that do not have an expiration date: https://github.com/Azure/azure-policy/issues/139
