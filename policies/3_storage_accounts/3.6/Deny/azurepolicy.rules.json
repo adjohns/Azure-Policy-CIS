@@ -1,0 +1,19 @@
+{
+    "if": {
+        "allOf": [
+            {
+                "field": "type",
+                "equals": "Microsoft.Storage/storageAccounts"
+            },
+            {
+                "not": {
+                    "field": "Microsoft.Storage/storageAccounts/blobServices/default.containers.publicAccess",
+                    "equals": "None"
+                }
+            }
+        ]
+    },
+    "then": {
+        "effect": "deny"
+    }
+}

@@ -1,0 +1,33 @@
+{
+    "PolicyDefinitions": [
+        {
+            "name": "4.7",
+            "displayName": "Ensure that 'Email service and co-administrators' is 'Enabled'. CIS Control 4.7",
+            "description": "Enable service and co-administrators to receive security alerts from the SQL server.",
+            "metadata": {
+                "category": "CIS"
+            },
+            "policyDefinition": {
+                "if": {
+                    "allOf": [
+                        {
+                            "field": "type",
+                            "equals": "Microsoft.Sql/servers/securityAlertPolicies"
+                        },
+                        {
+                            "field": "Microsoft.Sql/securityAlertPolicies.emailAccountAdmins",
+                            "exists": "true"
+                        },
+                        {
+                            "field": "Microsoft.Sql/securityAlertPolicies.emailAccountAdmins",
+                            "notEquals": true
+                        }
+                    ]
+                },
+                "then": {
+                    "effect": "deny"
+                }
+            }
+        }
+    ]
+}

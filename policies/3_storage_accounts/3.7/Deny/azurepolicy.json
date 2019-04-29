@@ -1,0 +1,31 @@
+{
+    "PolicyDefinitions": [
+        {
+            "name": "3.7",
+            "displayName": "Ensure default network access rule for Storage Accounts is set to deny. CIS Control 3.7",
+            "description": "Restricting default network access helps to provide a new layer of security, since storage accounts accept connections from clients on any network. To limit access to selected networks, the default action must be changed.",
+            "metadata": {
+                "category": "CIS"
+            },
+            "policyDefinition": {
+                "if": {
+                    "allOf": [
+                        {
+                            "field": "type",
+                            "equals": "Microsoft.Storage/storageAccounts"
+                        },
+                        {
+                            "not": {
+                                "field": "Microsoft.Storage/storageAccounts/networkAcls.defaultAction",
+                                "equals": "Deny"
+                            }
+                        }
+                    ]
+                },
+                "then": {
+                    "effect": "deny"
+                }
+            }
+        }
+    ]
+}

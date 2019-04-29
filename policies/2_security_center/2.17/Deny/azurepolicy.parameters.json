@@ -1,0 +1,9 @@
+{
+    "phone": {
+        "type": "string",
+        "metadata": {
+            "description": "The securityContact phone number to enforce",
+            "displayName": "Security Contact phone number"
+        }
+    }
+}

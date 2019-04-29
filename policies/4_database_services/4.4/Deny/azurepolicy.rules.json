@@ -1,0 +1,17 @@
+{
+    "if": {
+        "allOf": [
+            {
+                "field": "type",
+                "equals": "Microsoft.Sql/servers/securityAlertPolicies"
+            },
+            {
+                "field": "Microsoft.Sql/securityAlertPolicies.state",
+                "notEquals": "enabled"
+            }
+        ]
+    },
+    "then": {
+        "effect": "deny"
+    }
+}

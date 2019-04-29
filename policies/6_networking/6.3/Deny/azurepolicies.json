@@ -1,0 +1,29 @@
+{
+    "PolicyDefinitions": [
+        {
+            "name": "6.3",
+            "displayName": "Ensure no SQL Databases allow ingress 0.0.0.0/0 (ANY IP). CIS Control 6.3",
+            "description": "Ensure that no SQL Databases allow ingress from 0.0.0.0/0 (ANY IP).",
+            "metadata": {
+                "category": "CIS"
+            },
+            "policyDefinition": {
+                "if": {
+                    "allOf": [
+                        {
+                            "field": "type",
+                            "equals": "Microsoft.Sql/servers/firewallRules"
+                        },
+                        {
+                            "field": "Microsoft.Sql/servers/firewallRules/startIpAddress",
+                            "equals": "0.0.0.0"
+                        }
+                    ]
+                },
+                "then": {
+                    "effect": "deny"
+                }
+            }
+        }
+    ]
+}

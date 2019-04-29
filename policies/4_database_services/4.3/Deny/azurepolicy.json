@@ -1,0 +1,29 @@
+{
+    "PolicyDefinitions": [
+        {
+            "name": "4.3",
+            "displayName": "Ensure that 'Auditing' Retention is 'greater than 90 days'. CIS Control 4.3",
+            "description": "SQL Server Audit Retention should be configured to be greater than 90 days.",
+            "metadata": {
+                "category": "CIS"
+            },
+            "policyDefinition": {
+                "if": {
+                    "allOf": [
+                        {
+                            "field": "type",
+                            "equals": "Microsoft.Sql/servers/auditingSettings"
+                        },
+                        {
+                            "field": "Microsoft.Sql/servers/auditingSettings/retentionDays",
+                            "notEquals": "365"
+                        }
+                    ]
+                },
+                "then": {
+                    "effect": "deny"
+                }
+            }
+        }
+    ]
+}

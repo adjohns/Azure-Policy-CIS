@@ -1,0 +1,40 @@
+{
+    "PolicyDefinitions": [
+        {
+            "name": "2.16",
+            "displayName": "Ensure that 'Security contact emails' is set. CIS Control 2.16",
+            "description": "Provide a security contact email address.",
+            "metadata": {
+                "category": "CIS"
+            },
+            "policyDefinition": {
+                "if": {
+                    "allOf": [
+                        {
+                            "field": "type",
+                            "equals": "Microsoft.Security/securityContacts"
+                        },
+                        {
+                            "not": {
+                                "field": "Microsoft.Security/securityContacts/email",
+                                "equals": "[parameters('email')]"
+                            }
+                        }
+                    ]
+                },
+                "then": {
+                    "effect": "deny"
+                }
+            },
+            "parameters": {
+                "email": {
+                    "type": "string",
+                    "metadata": {
+                        "description": "The securityContact email address to enforce",
+                        "displayName": "Security Contact Email Address"
+                    }
+                }
+            }
+        }
+    ]
+}

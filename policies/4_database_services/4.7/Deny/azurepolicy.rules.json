@@ -1,0 +1,21 @@
+{
+    "if": {
+        "allOf": [
+            {
+                "field": "type",
+                "equals": "Microsoft.Sql/servers/securityAlertPolicies"
+            },
+            {
+                "field": "Microsoft.Sql/securityAlertPolicies.emailAccountAdmins",
+                "exists": "true"
+            },
+            {
+                "field": "Microsoft.Sql/securityAlertPolicies.emailAccountAdmins",
+                "notEquals": true
+            }
+        ]
+    },
+    "then": {
+        "effect": "deny"
+    }
+}

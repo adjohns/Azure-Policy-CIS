@@ -1,0 +1,31 @@
+{
+    "PolicyDefinitions": [
+        {
+            "name": "2.19",
+            "displayName": "Ensure that 'Send email also to subscription owners' is set to 'On'. CIS Control 2.19",
+            "description": "Enable security alert emails to subscription owners.",
+            "metadata": {
+                "category": "CIS"
+            },
+            "policyDefinition": {
+                "if": {
+                    "allOf": [
+                        {
+                            "field": "type",
+                            "equals": "Microsoft.Security/securityContacts"
+                        },
+                        {
+                            "not": {
+                                "field": "Microsoft.Security/securityContacts/alertsToAdmins",
+                                "equals": "On"
+                            }
+                        }
+                    ]
+                },
+                "then": {
+                    "effect": "deny"
+                }
+            }
+        }
+    ]
+}

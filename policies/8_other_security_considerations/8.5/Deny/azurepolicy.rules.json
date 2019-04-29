@@ -1,0 +1,21 @@
+{
+    "if": {
+        "allOf": [
+            {
+                "field": "type",
+                "equals": "Microsoft.ContainerService/managedClusters"
+            },
+            {
+                "anyOf": [
+                    {
+                        "field": "Microsoft.ContainerService/managedClusters/enableRBAC",
+                        "equals": "false"
+                    }
+                ]
+            }
+        ]
+    },
+    "then": {
+        "effect": "deny"
+    }
+}

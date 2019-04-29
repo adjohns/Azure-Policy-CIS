@@ -1,0 +1,41 @@
+{
+    "PolicyDefinitions": [
+        {
+            "name": "4.2",
+            "displayName": "Ensure that 'AuditActionGroups' in 'auditing' policy for a SQL server is set properly. CIS Control 4.2",
+            "description": "Configure the 'AuditActionGroups' property to appropriate groups to capture all the critical activities on the SQL Server and all the SQL databases hosted on the SQL server.",
+            "metadata": {
+                "category": "CIS"
+            },
+            "policyDefinition": {
+                "if": {
+                    "allOf": [
+                        {
+                            "field": "type",
+                            "equals": "Microsoft.Sql/servers/auditingSettings"
+                        },
+                        {
+                            "anyOf": [
+                                {
+                                    "field": "Microsoft.Sql/servers/auditingSettings/auditActionsAndGroups[*]",
+                                    "notEquals": "SUCCESSFUL_DATABASE_AUTHENTICATION_GROUP"
+                                },
+                                {
+                                    "field": "Microsoft.Sql/servers/auditingSettings/auditActionsAndGroups[*]",
+                                    "notEquals": "FAILED_DATABASE_AUTHENTICATION_GROUP"
+                                },
+                                {
+                                    "field": "Microsoft.Sql/servers/auditingSettings/auditActionsAndGroups[*]",
+                                    "notEquals": "BATCH_COMPLETED_GROUP"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "then": {
+                    "effect": "deny"
+                }
+            }
+        }
+    ]
+}

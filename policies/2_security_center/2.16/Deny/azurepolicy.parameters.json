@@ -1,0 +1,9 @@
+{
+    "email": {
+        "type": "string",
+        "metadata": {
+            "description": "The securityContact email address to enforce",
+            "displayName": "Security Contact Email Address"
+        }
+    }
+}
