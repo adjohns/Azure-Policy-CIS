@@ -42,7 +42,7 @@
                         "allOf": [
                             {
                                 "field": "Microsoft.Web/sites/config/minTlsVersion",
-                                "equals": "[parameters('minTLSVersion']"
+                                "equals": "[parameters('minTLSVersion')]"
                             }                    
                         ]
                     }

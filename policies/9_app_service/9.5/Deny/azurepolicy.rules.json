@@ -7,7 +7,7 @@
             },
             {
                 "field": "Microsoft.Web/sites/config/managedServiceIdentityId",
-                "exists": true
+                "exists": false
             }
         ]
     },

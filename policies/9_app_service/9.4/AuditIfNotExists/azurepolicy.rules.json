@@ -16,7 +16,7 @@
                 "allOf": [
                     {
                         "field": "Microsoft.Web/sites/clientCertEnabled",
-                        "equals": true
+                        "equals": "true"
                     }
                 ]
             }

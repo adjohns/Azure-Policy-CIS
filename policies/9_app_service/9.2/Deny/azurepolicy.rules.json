@@ -7,7 +7,7 @@
             },
             {
                 "field": "Microsoft.Web/sites/httpsOnly",
-                "equals": true
+                "notEquals": "true"
             }        
         ]
     },

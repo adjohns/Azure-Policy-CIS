@@ -34,7 +34,7 @@
                         "allOf": [
                             {
                                 "field": "Microsoft.Web/sites/httpsOnly",
-                                "equals": true
+                                "equals": "true"
                             }                    
                         ]
                     }
