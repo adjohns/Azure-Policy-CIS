@@ -7,7 +7,7 @@
             },
             {
                 "field": "Microsoft.Web/sites/clientCertEnabled",
-                "equals": true
+                "notEquals": "true"
             }
         ]
     },
