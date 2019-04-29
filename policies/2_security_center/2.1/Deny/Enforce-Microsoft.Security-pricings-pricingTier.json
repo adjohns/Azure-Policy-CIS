@@ -1,0 +1,35 @@
+{
+    "PolicyDefinitions": [
+        {
+            "name": "Enforce-Microsoft.Security-pricings-pricingTier",
+            "displayName": "Enforce Microsoft.Security/pricings/pricingTier Standard. CIS Control 2.1",
+            "description": "Enforce Microsoft.Security/pricings/pricingTier to be Standard Tier. CIS Control 2.1",
+            "metadata": {
+                "category": "MDT-Custom-Security"
+            },
+            "policyDefinition": {
+                "if": {
+                    "allOf": [
+                        {
+                            "field": "type",
+                            "equals": "Microsoft.Security/pricings"
+                        },
+                        {
+                            "field": "Microsoft.Security/pricings/pricingTier",
+                            "exists": "true"
+                        },
+                        {
+                            "not": {
+                                "field": "Microsoft.Security/pricings/pricingTier",
+                                "equals": "Standard"
+                            }
+                        }
+                    ]
+                },
+                "then": {
+                    "effect": "deny"
+                }
+            }
+        }
+    ]
+}

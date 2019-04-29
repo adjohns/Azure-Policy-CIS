@@ -1,0 +1,29 @@
+{
+    "PolicyDefinitions": [
+        {
+            "name": "4.1",
+            "displayName": "Ensure that 'Auditing' is set to 'On'. CIS Control 4.1",
+            "description": "Enable auditing on SQL Servers.",
+            "metadata": {
+                "category": "CIS"
+            },
+            "policyDefinition": {
+                "if": {
+                    "allOf": [
+                        {
+                            "field": "type",
+                            "equals": "Microsoft.Sql/servers/auditingSettings"
+                        },
+                        {
+                            "field": "Microsoft.Sql/servers/auditingSettings/state",
+                            "notEquals": "Enabled"
+                        }
+                    ]
+                },
+                "then": {
+                    "effect": "deny"
+                }
+            }
+        }
+    ]
+}

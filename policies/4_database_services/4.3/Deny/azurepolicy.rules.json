@@ -1,0 +1,17 @@
+{
+    "if": {
+        "allOf": [
+            {
+                "field": "type",
+                "equals": "Microsoft.Sql/servers/auditingSettings"
+            },
+            {
+                "field": "Microsoft.Sql/servers/auditingSettings/retentionDays",
+                "notEquals": "365"
+            }
+        ]
+    },
+    "then": {
+        "effect": "deny"
+    }
+}

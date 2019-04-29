@@ -1,0 +1,45 @@
+{
+    "PolicyDefinitions": [
+        {
+            "name": "5.1.2",
+            "displayName": "Ensure that Activity Log Retention is set 365 days or greater. CIS Control 5.1.2",
+            "description": "Ensure activity log retention is set for 365 days or greater.",
+            "metadata": {
+                "category": "CIS"
+            },
+            "policyDefinition": {
+                "if": {
+                    "allOf": [
+                        {
+                            "field": "type",
+                            "equals": "Microsoft.Insights/logprofiles"
+                        },
+                        {
+                            "field": "name",
+                            "equals": "default"
+                        },
+                        {
+                            "anyOf": [
+                                {
+                                    "not": {
+                                        "field": "Microsoft.Insights/logProfiles/retentionPolicy.days",
+                                        "equals": "365"
+                                    }
+                                },
+                                {
+                                    "not": {
+                                        "field": "Microsoft.Insights/logProfiles/retentionPolicy.enabled",
+                                        "equals": true
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "then": {
+                    "effect": "deny"
+                }
+            }
+        }
+    ]
+}

@@ -1,0 +1,39 @@
+{
+    "PolicyDefinitions": [
+        {
+            "name": "4.5",
+            "displayName": "Ensure that 'Threat Detection types' is set to 'All'. CIS Control 4.5",
+            "description": "Enable all types of threat detection on SQL servers.",
+            "metadata": {
+                "category": "CIS"
+            },
+            "policyDefinition": {
+                "if": {
+                    "allOf": [
+                        {
+                            "field": "type",
+                            "equals": "Microsoft.Sql/servers/securityAlertPolicies"
+                        },
+                        {
+                            "field": "name",
+                            "equals": "default"
+                        },
+                        {
+                            "field": "Microsoft.Sql/servers/securityAlertPolicies/disabledAlerts[*]",
+                            "exists": "true"
+                        },
+                        {
+                            "not": {
+                                "field": "Microsoft.Sql/servers/securityAlertPolicies/disabledAlerts[*]",
+                                "equals": ""
+                            }
+                        }
+                    ]
+                },
+                "then": {
+                    "effect": "deny"
+                }
+            }
+        }
+    ]
+}

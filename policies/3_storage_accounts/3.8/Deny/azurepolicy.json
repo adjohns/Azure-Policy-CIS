@@ -1,0 +1,35 @@
+{
+    "PolicyDefinitions": [
+        {
+            "name": "3.8",
+            "displayName": "Ensure 'Trusted Microsoft Services' is enabled for Storage Account access. CIS Control 3.8",
+            "description": "Some Microsoft services that interact with storage accounts operate from networks that can't be granted access through network rules. To help this type of service work as intended, allow the set of trusted Microsoft services to bypass the network rules. These services will then use strong authentication to access the storage account. If the Allow trusted Microsoft services exception is enabled, the following services: Azure Backup, Azure Site Recovery, Azure DevTest Labs, Azure Event Grid, Azure Event Hubs, Azure Networking, Azure Monitor and Azure SQL Data Warehouse (when registered in the subscription), are granted access to the storage account.",
+            "metadata": {
+                "category": "CIS"
+            },
+            "policyDefinition": {
+                "if": {
+                    "allOf": [
+                        {
+                            "field": "type",
+                            "equals": "Microsoft.Storage/storageAccounts"
+                        },
+                        {
+                            "field": "Microsoft.Storage/storageAccounts/networkAcls.bypass",
+                            "exists": true
+                        },
+                        {
+                            "not": {
+                                "field": "Microsoft.Storage/storageAccounts/networkAcls.bypass",
+                                "contains": "AzureServices"
+                            }
+                        }
+                    ]
+                },
+                "then": {
+                    "effect": "deny"
+                }
+            }
+        }
+    ]
+}

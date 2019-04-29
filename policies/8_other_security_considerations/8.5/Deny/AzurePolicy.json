@@ -1,0 +1,33 @@
+{
+    "PolicyDefinitions": [
+        {
+            "name": "8.5",
+            "displayName": "Enable role-based access control (RBAC) within Azure Kubernetes Services. CIS Control 8.5",
+            "description": "Ensure that RBAC is enabled on all Azure Kubernetes Services Instances.",
+            "metadata": {
+                "category": "CIS"
+            },
+            "policyDefinition": {
+                "if": {
+                    "allOf": [
+                        {
+                            "field": "type",
+                            "equals": "Microsoft.ContainerService/managedClusters"
+                        },
+                        {
+                            "anyOf": [
+                                {
+                                    "field": "Microsoft.ContainerService/managedClusters/enableRBAC",
+                                    "equals": "false"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "then": {
+                    "effect": "deny"
+                }
+            }
+        }
+    ]
+}

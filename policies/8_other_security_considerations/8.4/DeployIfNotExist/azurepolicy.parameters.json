@@ -1,0 +1,17 @@
+{
+    "keyvaultName": {
+        "value": "[field('name')]"
+    },
+    "location": {
+        "value": "[field('location')]"
+    },
+    "sku": {
+        "value": "[field('Microsoft.KeyVault/vaults/sku')]"
+    },
+    "tenantId": {
+        "value": "[field('Microsoft.KeyVault/vaults/tenantId')]"
+    },
+    "accessPolicies": {
+        "value": "[field('Microsoft.KeyVault/vaults/accessPolicies')]"
+    }
+}

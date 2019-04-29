@@ -1,0 +1,21 @@
+{
+    "if": {
+        "allOf": [
+            {
+                "field": "type",
+                "equals": "Microsoft.Sql/servers/administrators"
+            },
+            {
+                "field": "Microsoft.Sql/servers/administrators/administratorType",
+                "equals": "ActiveDirectory"
+            },
+            {
+                "field": "Microsoft.Sql/servers/administrators/login",
+                "equals": ""
+            }
+        ]
+    },
+    "then": {
+        "effect": "deny"
+    }
+}

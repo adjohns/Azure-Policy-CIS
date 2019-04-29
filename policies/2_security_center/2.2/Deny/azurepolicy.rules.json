@@ -1,0 +1,19 @@
+{
+    "if": {
+        "allOf": [
+            {
+                "field": "type",
+                "equals": "Microsoft.Security/autoProvisioningSettings"
+            },
+            {
+                "not": {
+                    "field": "Microsoft.Security/autoProvisioningSettings/autoProvision",
+                    "equals": "On"
+                }
+            }
+        ]
+    },
+    "then": {
+        "effect": "deny"
+    }
+}

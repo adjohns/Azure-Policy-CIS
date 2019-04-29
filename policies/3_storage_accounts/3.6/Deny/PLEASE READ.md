@@ -1,0 +1,1 @@
+At this time Azure Policy cannot be used to restrict the creation of public containers. This is due to the fact that Azure Policy can only audit/enforce actions against the Azure Resource Manager. Azure Storage pre-dates ARM and is designed send request via the data plane, thus bypassing ARM. This area is being improved by Microsoft. 

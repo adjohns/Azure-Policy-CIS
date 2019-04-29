@@ -1,0 +1,31 @@
+{
+    "PolicyDefinitions": [
+        {
+            "name": "3.1",
+            "displayName": "Ensure that 'Secure transfer required' is set to 'Enabled'. CIS Control 3.1",
+            "description": "Enable data encryption is transit.",
+            "metadata": {
+                "category": "CIS"
+            },
+            "policyDefinition": {
+                "if": {
+                    "allOf": [
+                        {
+                            "field": "type",
+                            "equals": "Microsoft.Storage/storageAccounts"
+                        },
+                        {
+                            "not": {
+                                "field": "Microsoft.Storage/storageAccounts/supportsHttpsTrafficOnly",
+                                "equals": "true"
+                            }
+                        }
+                    ]
+                },
+                "then": {
+                    "effect": "deny"
+                }
+            }
+        }
+    ]
+}

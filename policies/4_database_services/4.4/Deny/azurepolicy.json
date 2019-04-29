@@ -1,0 +1,29 @@
+{
+    "PolicyDefinitions": [
+        {
+            "name": "4.4",
+            "displayName": "Ensure that 'Advanced Data Security' on a SQL server is set to 'On'. CIS Control 4.4",
+            "description": "Enable 'Advanced Data Security' on critical SQL Servers.",
+            "metadata": {
+                "category": "CIS"
+            },
+            "policyDefinition": {
+                "if": {
+                    "allOf": [
+                        {
+                            "field": "type",
+                            "equals": "Microsoft.Sql/servers/securityAlertPolicies"
+                        },
+                        {
+                            "field": "Microsoft.Sql/securityAlertPolicies.state",
+                            "notEquals": "enabled"
+                        }
+                    ]
+                },
+                "then": {
+                    "effect": "deny"
+                }
+            }
+        }
+    ]
+}

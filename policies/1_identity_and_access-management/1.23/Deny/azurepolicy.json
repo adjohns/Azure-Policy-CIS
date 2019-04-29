@@ -1,0 +1,55 @@
+{
+    "PolicyDefinitions": [
+        {
+            "name": "1.23",
+            "displayName": "Ensure that no custom subscription owner roles are created. CIS control 1.23.",
+            "description": "Subscription ownership should not include permission to create custom owner roles. The principle of least privilege should be followed and only necessary privileges should be assigned instead of allowing full administrative access.",
+            "metadata": {
+                "category": "CIS"
+            },
+            "policyDefinition": {
+                "if": {
+                    "allOf": [
+                        {
+                            "field": "type",
+                            "equals": "Microsoft.Authorization/roleDefinitions"
+                        },
+                        {
+                            "field": "Microsoft.Authorization/roleDefinitions/type",
+                            "equals": "CustomRole"
+                        },
+                        {
+                            "anyOf": [
+                                {
+                                    "not": {
+                                        "field": "Microsoft.Authorization/roleDefinitions/permissions[*].actions[*]",
+                                        "notEquals": "*"
+                                    }
+                                },
+                                {
+                                    "not": {
+                                        "field": "Microsoft.Authorization/roleDefinitions/permissions.actions[*]",
+                                        "notEquals": "*"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "not": {
+                                "field": "Microsoft.Authorization/roleDefinitions/assignableScopes[*]",
+                                "notIn": [
+                                    "[concat(subscription().id,'/')]",
+                                    "[subscription().id]",
+                                    "/"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                "then": {
+                    "effect": "deny"
+                }
+            }
+        }
+    ]
+}

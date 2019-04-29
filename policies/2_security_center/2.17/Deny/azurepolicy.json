@@ -1,0 +1,40 @@
+{
+    "PolicyDefinitions": [
+        {
+            "name": "2.17",
+            "displayName": "Ensure that security contact 'Phone number' is set. CIS Control 2.17",
+            "description": "Provide a security contact phone number.",
+            "metadata": {
+                "category": "CIS"
+            },
+            "policyDefinition": {
+                "if": {
+                    "allOf": [
+                        {
+                            "field": "type",
+                            "equals": "Microsoft.Security/securityContacts"
+                        },
+                        {
+                            "not": {
+                                "field": "Microsoft.Security/securityContacts/phone",
+                                "equals": "[parameters('phone')]"
+                            }
+                        }
+                    ]
+                },
+                "then": {
+                    "effect": "deny"
+                }
+            },
+            "parameters": {
+                "phone": {
+                    "type": "string",
+                    "metadata": {
+                        "description": "The securityContact phone number to enforce",
+                        "displayName": "Security Contact phone number"
+                    }
+                }
+            }
+        }
+    ]
+}

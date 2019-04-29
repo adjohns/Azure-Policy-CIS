@@ -1,0 +1,31 @@
+{
+    "PolicyDefinitions": [
+        {
+            "name": "2.18",
+            "displayName": "Ensure that 'Send email notification for high severity alerts' is set to 'On'.",
+            "description": "Enable emailing security alerts to the security contact.",
+            "metadata": {
+                "category": "CIS"
+            },
+            "policyDefinition": {
+                "if": {
+                    "allOf": [
+                        {
+                            "field": "type",
+                            "equals": "Microsoft.Security/securityContacts"
+                        },
+                        {
+                            "not": {
+                                "field": "Microsoft.Security/securityContacts/alertNotifications",
+                                "equals": "On"
+                            }
+                        }
+                    ]
+                },
+                "then": {
+                    "effect": "deny"
+                }
+            }
+        }
+    ]
+}

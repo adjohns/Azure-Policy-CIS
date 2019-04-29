@@ -1,0 +1,43 @@
+{
+    "if": {
+        "allOf": [
+            {
+                "field": "type",
+                "equals": "Microsoft.Authorization/roleDefinitions"
+            },
+            {
+                "field": "Microsoft.Authorization/roleDefinitions/type",
+                "equals": "CustomRole"
+            },
+            {
+                "anyOf": [
+                    {
+                        "not": {
+                            "field": "Microsoft.Authorization/roleDefinitions/permissions[*].actions[*]",
+                            "notEquals": "*"
+                        }
+                    },
+                    {
+                        "not": {
+                            "field": "Microsoft.Authorization/roleDefinitions/permissions.actions[*]",
+                            "notEquals": "*"
+                        }
+                    }
+                ]
+            },
+            {
+                "not": {
+                    "field": "Microsoft.Authorization/roleDefinitions/assignableScopes[*]",
+                    "notIn": [
+                        "[concat(subscription().id,'/')]",
+                        "[subscription().id]",
+                        "/"
+                    ]
+                }
+            }
+        ]
+    },
+    "then": {
+        "effect": "deny"
+    }
+}

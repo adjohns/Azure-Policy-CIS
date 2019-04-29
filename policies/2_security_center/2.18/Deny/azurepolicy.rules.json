@@ -1,0 +1,19 @@
+{
+    "if": {
+        "allOf": [
+            {
+                "field": "type",
+                "equals": "Microsoft.Security/securityContacts"
+            },
+            {
+                "not": {
+                    "field": "Microsoft.Security/securityContacts/alertNotifications",
+                    "equals": "On"
+                }
+            }
+        ]
+    },
+    "then": {
+        "effect": "deny"
+    }
+}
